@@ -11,11 +11,9 @@ export class AuthService {
   private readonly TOKEN_KEY = 'auth_token';
   private readonly CLIENTE_KEY = 'auth_cliente';
 
-  // ── Signals (estado reactivo) ──
   private readonly _isAuthenticated = signal<boolean>(this.hasValidToken());
   private readonly _clienteNombre = signal<string>(this.getStoredClienteNombre());
 
-  /** Signals públicos de solo lectura */
   readonly isAuthenticated = computed(() => this._isAuthenticated());
   readonly clienteNombre = computed(() => this._clienteNombre());
 
@@ -24,9 +22,7 @@ export class AuthService {
     private readonly router: Router,
   ) {}
 
-  /**
-   * Login con identificación (cédula) y password del cliente.
-   */
+
   login(credentials: LoginRequest): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.API_URL}/login`, credentials).pipe(
       tap((response) => {
@@ -39,9 +35,7 @@ export class AuthService {
     );
   }
 
-  /**
-   * Cierra sesión, limpia almacenamiento y redirige al login.
-   */
+
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.CLIENTE_KEY);
@@ -50,14 +44,11 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  /**
-   * Retorna el token JWT almacenado.
-   */
+
   getToken(): string | null {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
-  // ── Métodos privados ──
 
   private storeToken(token: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);
