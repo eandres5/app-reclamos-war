@@ -1,0 +1,193 @@
+.app-toolbar {
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.toolbar-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.username-label {
+  margin-right: 1rem;
+  color: var(--text-color-secondary);
+  font-size: 0.9rem;
+}
+
+.username-label i {
+  margin-right: 0.35rem;
+}
+
+.page-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.card-header {
+  padding: 1.25rem 1.5rem 0.5rem;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: var(--primary-color);
+}
+
+.card-header h2 i {
+  margin-right: 0.5rem;
+}
+
+.form-section {
+  margin-bottom: 1.5rem;
+}
+
+.form-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color-secondary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-row .field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field label {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.required {
+  color: var(--red-500);
+}
+
+.input-with-button {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-with-button input {
+  flex: 1;
+}
+
+.field-identificacion {
+  max-width: 500px;
+}
+
+.client-info {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.char-count {
+  text-align: right;
+  color: var(--text-color-secondary);
+  font-size: 0.8rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+}
+
+.modal-content {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.modal-icon {
+  font-size: 3rem;
+  color: var(--green-500);
+  margin-bottom: 1rem;
+}
+
+.modal-question {
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-top: 0.75rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+:host ::ng-deep .app-toolbar {
+  background: var(--orange-gradient);
+  border: none;
+  color: white;
+}
+
+/* Texto blanco */
+:host ::ng-deep .app-toolbar .toolbar-title,
+:host ::ng-deep .app-toolbar .username-label,
+:host ::ng-deep .app-toolbar i {
+  color: white;
+}
+
+
+:host ::ng-deep .app-toolbar {
+  background: var(--orange-gradient);
+  border: none;
+  color: white;
+}
+
+/* Texto blanco */
+:host ::ng-deep .app-toolbar .toolbar-title,
+:host ::ng-deep .app-toolbar .username-label,
+:host ::ng-deep .app-toolbar i {
+  color: white;
+}
+
+/* BOTÓN BLANCO EN TOOLBAR */
+:host ::ng-deep .app-toolbar .p-button {
+  background: white !important;
+  color: var(--primary-color) !important;
+  border: none !important;
+  font-weight: 600;
+}
+
+:host ::ng-deep .app-toolbar .p-button:hover {
+  background: #f1f1f1 !important;
+}
+
+:host ::ng-deep .p-inputtext,
+:host ::ng-deep .p-inputTextarea {
+  background: white;
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+}
+
+/* DROPDOWN */
+:host ::ng-deep .p-dropdown {
+  background: white;
+  border-radius: 8px;
+}
+
+:host ::ng-deep .p-inputtext:focus,
+:host ::ng-deep .p-inputtextarea:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 0.2rem rgba(244, 113, 32, 0.25) !important;
+}
+
+/* FOCUS DROPDOWN */
+:host ::ng-deep .p-dropdown:not(.p-disabled).p-focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 0.2rem rgba(244, 113, 32, 0.25) !important;
+}
+:host ::ng-deep .input-with-button .p-button {
+  background: var(--orange-gradient);
+  border: none;
+}

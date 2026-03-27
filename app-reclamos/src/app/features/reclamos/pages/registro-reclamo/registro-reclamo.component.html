@@ -1,0 +1,181 @@
+<p-toast position="top-center"/>
+
+<!-- 🔥 TOOLBAR -->
+<p-toolbar styleClass="app-toolbar flex flex-wrap justify-content-between">
+
+  <div class="flex align-items-center gap-2">
+    <img
+      src="https://www.bancointernacional.com.ec/wp-content/uploads/2020/11/cropped-logo-banco-internacional.webp"
+      alt="IMG" style="width: 200px">
+  </div>
+
+  <div class="flex align-items-center gap-2 mt-2 md:mt-0">
+    <span class="username-label">
+      <i class="pi pi-user"></i>
+    </span>
+    <p-button
+      icon="pi pi-sign-out"
+      label="Cerrar Sesión"
+      [text]="true"
+      (onClick)="onLogout()"
+    />
+  </div>
+</p-toolbar>
+
+<div class="page-container">
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="card-header">
+        <h2><i class="pi pi-file-edit"></i> Registro de Reclamo</h2>
+      </div>
+    </ng-template>
+
+    <div class="form-section">
+      <h3>Datos del Cliente</h3>
+
+      <div class="grid">
+        <div class="col-12 md:col-8">
+          <label>Identificación <span class="required">*</span></label>
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="identificacion"
+            placeholder="Ej: 1234567890"
+            maxlength="13"
+            class="w-full"
+            [disabled]="reclamoService.loading()"
+            (keyup.enter)="onConsultar()"
+          />
+        </div>
+
+        <div class="col-12 md:col-4">
+          <br>
+          <p-button
+            label="Consultar"
+            icon="pi pi-search"
+            class="w-full"
+            (onClick)="onConsultar()"
+            [loading]="reclamoService.loading()"
+            [disabled]="!identificacion.trim()"
+          />
+        </div>
+      </div>
+
+      @if (reclamoService.clienteEncontrado()) {
+        <div class="grid client-info">
+
+          <div class="col-12 md:col-6">
+            <div class="field">
+              <label>Nombres</label>
+              <input
+                type="text"
+                pInputText
+                [value]="reclamoService.clienteConsultado()?.nombres"
+                disabled
+                class="w-full"
+              />
+            </div>
+          </div>
+
+          <div class="col-12 md:col-6">
+            <div class="field">
+              <label>Apellidos</label>
+              <input
+                type="text"
+                pInputText
+                [value]="reclamoService.clienteConsultado()?.apellidos"
+                disabled
+                class="w-full"
+              />
+            </div>
+          </div>
+
+        </div>
+      }
+    </div>
+
+    @if (reclamoService.clienteEncontrado()) {
+
+      <div class="form-section">
+        <h3>Datos del Reclamo</h3>
+
+        <div class="grid">
+          <div class="col-12">
+            <div class="field">
+              <label>Tipo de Reclamo <span class="required">*</span></label>
+              <p-dropdown
+                [options]="tiposReclamo"
+                [(ngModel)]="tipoReclamoSeleccionado"
+                placeholder="Seleccione un tipo"
+                optionLabel="label"
+                optionValue="value"
+                class="w-full"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="col-12">
+            <div class="field">
+              <label>Detalle del Reclamo <span class="required">* (Debe contener entre 10 y 500 caracteres)</span></label>
+              <textarea
+                pInputTextarea
+                [(ngModel)]="detalleReclamo"
+                rows="5"
+                maxlength="500"
+                class="w-full"
+                placeholder="Describa el motivo de su reclamo..."
+              ></textarea>
+
+              <small class="char-count">
+                {{ detalleReclamo.length }} / 500
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-content-end">
+          <div class="w-full md:w-auto">
+            <p-button
+              label="Guardar Reclamo"
+              icon="pi pi-save"
+              class="w-full md:w-auto"
+              (onClick)="onGuardar()"
+              [loading]="reclamoService.loading()"
+              [disabled]="!isReclamoFormValid()"
+            />
+          </div>
+        </div>
+
+      </div>
+    }
+  </p-card>
+</div>
+
+<p-dialog
+  header="Reclamo Registrado"
+  [(visible)]="mostrarModal"
+  [modal]="true"
+  [closable]="false"
+  [style]="{ width: '90vw', maxWidth: '420px' }"
+>
+  <div class="modal-content">
+    <i class="pi pi-check-circle modal-icon"></i>
+    <p>Su reclamo ha sido registrado exitosamente.</p>
+    <p class="modal-question">¿Desea ingresar un nuevo reclamo?</p>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      label="No"
+      icon="pi pi-times"
+      (onClick)="onModalNo()"
+    />
+    <p-button
+      label="Sí"
+      icon="pi pi-check"
+      (onClick)="onModalSi()"
+    />
+  </ng-template>
+</p-dialog>

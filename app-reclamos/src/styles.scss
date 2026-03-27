@@ -1,0 +1,104 @@
+@import "primeicons/primeicons.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* 🔶 COLOR PRINCIPAL */
+  --primary-color: #f47120;
+  --primary-color-text: #ffffff;
+
+  /* 🎨 GRADIENTE */
+  --orange-gradient: linear-gradient(to left, #f47120, #f98f16);
+
+  /* 🌑 FONDOS */
+  --surface-ground: #f7f9fc;      /* fondo general (gris claro elegante) */
+  --surface-card: #ffffff;        /* tarjetas */
+  --surface-border: #e5e7eb;      /* bordes suaves */
+
+  /* 📝 TEXTO */
+  --text-color: #2d3748;          /* texto principal (gris oscuro suave) */
+  --text-color-secondary: #718096;/* texto secundario */
+
+  /* 🎯 ESTADOS */
+  --focus-ring: rgba(244, 113, 32, 0.25);
+  --highlight-bg: #fff4ec;
+
+  /* 🔤 TIPOGRAFÍA */
+  --font-family: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-family);
+  background-color: var(--surface-ground);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+.w-full {
+  width: 100% !important;
+}
+
+.card-background {
+  background: var(--orange-gradient) !important;
+  border: none !important;
+}
+
+.p-button {
+  background: var(--orange-gradient) !important;
+  border: none !important;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.p-button:hover {
+  filter: brightness(1.05);
+}
+
+.p-button:active {
+  filter: brightness(0.95);
+}
+
+.p-dropdown:focus {
+  border-color: #f47120 !important;
+  box-shadow: 0 0 0 0.2rem rgba(244, 113, 32, 0.25) !important;
+}
+
+.p-inputtext {
+  border-radius: 8px;
+  border: 1px solid var(--surface-border);
+  padding: 0.6rem 0.75rem;
+}
+
+.p-inputtext:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 0.2rem var(--focus-ring) !important;
+}
+
+.p-dropdown.p-focus {
+  border-color: #f47120 !important;
+  box-shadow: 0 0 0 0.2rem rgba(244, 113, 32, 0.25) !important;
+}
+
+.p-inputtextarea:focus {
+  border-color: #f47120 !important;
+  box-shadow: 0 0 0 0.2rem rgba(244, 113, 32, 0.25) !important;
+}
+
+.p-card {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+login-card {
+  background: var(--orange-gradient);
+}

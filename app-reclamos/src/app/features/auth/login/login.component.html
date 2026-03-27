@@ -1,0 +1,51 @@
+<p-toast position="top-center"/>
+<div class="login-container">
+  <div class="login-card-wrapper">
+    <p-card styleClass="login-card">
+      <ng-template pTemplate="header">
+        <div class="login-header">
+          <img src="https://www.bancointernacional.com.ec/wp-content/uploads/2020/11/cropped-logo-banco-internacional.webp" alt="IMG" style="width: 90%">
+        </div>
+      </ng-template>
+      <div class="login-form">
+        <div class="field">
+          <label for="identificacion">Identificación</label>
+          <input
+            id="identificacion"
+            type="text"
+            pInputText
+            [(ngModel)]="credentials.identificacion"
+            placeholder="Ej: 1712345678"
+            class="w-full"
+            maxlength="13"
+            [disabled]="loading()"
+            (keyup.enter)="onLogin()"
+          />
+        </div>
+
+        <div class="field">
+          <label for="password">Contraseña</label>
+          <p-password
+            id="password"
+            [(ngModel)]="credentials.password"
+            placeholder="Ingrese su contraseña"
+            [toggleMask]="true"
+            [feedback]="false"
+            styleClass="w-full"
+            [disabled]="loading()"
+            (keyup)="onPasswordKeyUp($event)"
+          />
+        </div>
+
+        <p-button
+          label="Iniciar Sesión"
+          icon="pi pi-sign-in"
+          styleClass="w-full"
+          [loading]="loading()"
+          (onClick)="onLogin()"
+          [disabled]="!isFormValid()"
+        />
+      </div>
+    </p-card>
+  </div>
+</div>
